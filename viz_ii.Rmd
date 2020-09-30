@@ -283,7 +283,7 @@ fas_data %>%
     values_to = "pn_day"
   ) %>% 
   drop_na() %>% 
-  mutate(outcome = forcats::fct_relevel(outcome, "pd_ears", "pd_pivot", "pd_walk", "pd_eyes")) %>% 
+  mutate(outcome = forcats::fct_reorder(outcome, pn_day, median)) %>% 
   ggplot(aes(x = dose, y = pn_day)) + 
   geom_violin() + 
   facet_grid(day_of_tx ~ outcome)
